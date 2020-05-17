@@ -1,0 +1,350 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+ 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Form Validation</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link href="{% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+    <style>
+        .zoom {
+          transition: transform .2s; /* Animation */
+          margin: 0 auto;
+        }
+        
+        .zoom:hover {
+          transform: scale(2.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+
+        </style>
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+         <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="">
+                    <img class="zoom" style="height: 50px;" src="{% static 'jpac.jpeg' %}">J-PAC
+                    
+                    </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <!-- <div class="dashboard-wrapper"> -->
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <a href="{% url 'registered' %}"><button class="btn btn-primary">Back </button></a>
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+             
+                    
+                    
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- valifation types -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Registration Form</h5>
+                                <div class="card-body">
+                                    <form id="validationform" method="POST" data-parsley-validate="" novalidate="">{% csrf_token %}
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Name (with initial)</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" name="first_name" value="{{ member.first_name }}" required=""  class="form-control" disabled>
+                                            </div>
+                                            <div class="col-lg-5">
+                                                <input type="text" name="last_name" value="{{ member.last_name }}" required=""  class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Father Name</label>
+                                            <div class="col-12 col-sm-8 col-lg-8">
+                                                <input type="text" required="" value="{{ member.father_name }}" name="father_name" placeholder="Enter your Father name" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Mobile</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" name="mobile" required="" value="{{ member.mobile }}" placeholder="Enter Your Mobile Number" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-lg-2 col-form-label text-sm-right">WhatsApp No.</label>
+                                            <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" name="whatsapp" value="{{ member.whatsapp }}" placeholder="Enter Your WhatsApp Mobile Number" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">E-Mail</label>
+                                            <div class="col-sm-3 col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.email }}" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">DOB</label>
+                                            <div class="col-sm-2 col-lg-2 mb-3 mb-sm-0">
+                                                <input type="date" required="" value="{{ member.dob|date:"Y-m-d" }}"  name="dob" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Blood Group</label>
+                                            <div class="col-sm-1 col-lg-1 mb-3 mb-sm-0">
+                                                
+                                                <select name="blood_group" class="form-control" disabled>
+                                                    <option value="">----------</option>
+                                                    <option value="A+" {% if member.blood_group == 'A+' %} selected {% endif %}>A+ve</option>
+                                                    <option value="A-" {% if member.blood_group == 'A-' %} selected {% endif %}>A-ve</option>
+                                                    <option value="B+" {% if member.blood_group == 'B+' %} selected {% endif %}>B+ve</option>
+                                                    <option value="B-" {% if member.blood_group == 'B+' %} selected {% endif %}>B-ve</option>
+                                                    <option value="O+" {% if member.blood_group == 'O+' %} selected {% endif %}>O+ve</option>
+                                                    <option value="O-" {% if member.blood_group == 'O+' %} selected {% endif %}>O-ve</option>
+                                                    <option value="AB+" {% if member.blood_group == 'AB+' %} selected {% endif %}>AB+ve</option>
+                                                    <option value="AB-" {% if member.blood_group == 'AB-' %} selected {% endif %}>AB-ve</option>
+                                                  </select>
+                                            </div>
+                                        </div>
+                                       
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label text-sm-right">Unit</label>
+                                            <div class="col-sm-3 col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.unit }}" name="unit" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Sector</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.sector }}" name="sector" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Central</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.central }}" name="central" placeholder="" class="form-control" disabled>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="form-group row">
+                                            <h4 style="margin: auto;">Education/Job</h4>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label text-sm-right">Education</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.education }}" name="education" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-lg-1 col-form-label text-sm-right">Subject</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.subject }}" name="subject" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-lg-1 col-form-label text-sm-right">Islamic</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required=""  value="{{ member.islamic }}" name="islamic" placeholder="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label text-sm-right">Company</label>
+                                            <div class="col-lg-4 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.company }}" name="company" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Job Type</label disabled>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.job_type }}" name="job_type" placeholder="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Job</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <input type="text" required="" value="{{ member.job }}" name="job" placeholder="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Skills</label>
+                                            <div class="col-12 col-sm-8 col-lg-6">
+                                                <textarea required="" name="skills" class="form-control" disabled>{{ member.skills }}</textarea >
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <h4 style="margin: auto;">Address( India )</h4>
+                                        </div>
+                                        
+                                        
+                                        
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">District</label>
+                                            
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                
+                                                <select name="district" class="form-control" required disabled>
+                                                    <option value="">Select</option>
+                                                    <option value="Kasaragod" {% if member.district == 'Kasaragod' %} selected {% endif %}>Kasaragod</option>
+                                                    <option value="Kannur" {% if member.district == 'Kannur' %} selected {% endif %}>Kannur</option>
+                                                    <option value="Wayanad" {% if member.district == 'Wayanad' %} selected {% endif %}>Wayanad</option>
+                                                    <option value="Kozhikode" {% if member.district == 'Kozhikode' %} selected {% endif %}>Kozhikode</option>
+                                                    <option value="Malappuram" {% if member.district == 'Malappuram' %} selected {% endif %}>Malappuram</option>
+                                                    <option value="Palakkad" {% if member.district == 'Palakkad' %} selected {% endif %}>Palakkad</option>
+                                                    <option value="Thrissur" {% if member.district == 'Thrissur' %} selected {% endif %}>Thrissur</option>
+                                                    <option value="Ernakulam" {% if member.district == 'Ernakulam' %} selected {% endif %}>Ernakulam</option>
+                                                    <option value="Idukki" {% if member.district == 'Idukki' %} selected {% endif %}>Idukki</option>
+                                                    <option value="Kottayam" {% if member.district == 'Kottayam' %} selected {% endif %}>Kottayam</option>
+                                                    <option value="Pathanamthitta" {% if member.district == 'Pathanamthitta' %} selected {% endif %}>Pathanamthitta</option>
+                                                    <option value="Alappuzha" {% if member.district == 'Alappuzha' %} selected {% endif %}>Alappuzha</option>
+                                                    <option value="Kollam" {% if member.district == 'Kollam' %} selected {% endif %}>Kollam</option>
+                                                    <option value="Thiruvananthapuram" {% if member.district == 'Thiruvananthapuram' %} selected {% endif %}>Thiruvananthapuram</option>
+                                                  </select>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Place</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.place }}" name="place" placeholder="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label text-sm-right">House Name</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.house_name }}" name="house_name" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Post Office</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" value="{{ member.post_office }}" name="post_office" placeholder="" class="form-control" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label text-sm-right">Phone Number</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="number" required="" value="{{ member.phone }}" name="phone" placeholder="" class="form-control" disabled>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="form-group row text-right">
+                                            <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
+                                                <button type="submit" class="btn btn-space btn-primary" disabled>Submit</button>
+                                                <button class="btn btn-space btn-secondary" disabled>Cancel</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end valifation types -->
+                        <!-- ============================================================== -->
+                    </div>
+           
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                
+                <div class="container-fluid">
+                    
+                    <div class="row">
+                        <div class="col-xl-1 col-lg-1 col-md-1 col-sm-1 col-3">
+                            <img class="zoom" style="height: 50px;" src="{% static 'logo.png' %}">
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-7 col-sm-7 col-7">
+                            Powered By Wizzo Technologies. <br><a href="http://wizzoit.com/">Wizzo KSA</a>.
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <input type="text" id="msg" value="{{ msg }}" hidden>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+    <script src="{% static 'assets/vendor/parsley/parsley.js' %}"></script>
+    <script src="{% static 'assets/libs/js/main-js.js' %}"></script>
+    <script>
+    $('#form').parsley();
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        sucdlt()
+    function sucdlt() {
+        var v1 = document.getElementById('msg').value;
+
+        if(v1==""){
+
+        } else if(v1=="success"){
+
+          swal('Success!', 'Registration Form submitted successfully', 'success');
+        }
+        
+
+    }
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+    </script>
+</body>
+ 
+</html>
