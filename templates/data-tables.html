@@ -212,9 +212,22 @@
                                             <tr>
                                                 <th>Sl. No.</th>
                                                 <th>Full Name</th>
+                                                <th>ID</th>
                                                 <th>Mobile</th>
-                                                
+                                                {% if search_for == '' %}
                                                 <th>Place</th>
+                                                {% elif search_for == 'job' %}
+                                                <th>Job</th>
+                                                {% elif search_for == 'job_type' %}
+                                                <th>Job Type</th>
+                                                {% elif search_for == 'company' %}
+                                                <th>Company</th>
+                                                {% elif search_for == 'education' %}
+                                                <th>Education</th>
+                                                {% elif search_for == 'blood_group' %}
+                                                <th>Blood Group</th>
+                                                {% endif %}
+                                                <th>Generate</th>
                                                 <th>View</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -225,9 +238,22 @@
                                             <tr>
                                                 <td>{{ forloop.counter }}</td>
                                                 <td>{{ i.first_name }} {{ i.last_name }}</td>
+                                                <td>{{ i.member_id }}</td>
                                                 <td>{{ i.mobile }}</td>
-                                                
+                                                {% if search_for == '' %}
                                                 <td>{{ i.place }}</td>
+                                                {% elif search_for == 'job' %}
+                                                <td>{{ i.job }}</td>
+                                                {% elif search_for == 'job_type' %}
+                                                <td>{{ i.job_type }}</td>
+                                                {% elif search_for == 'company' %}
+                                                <td>{{ i.company }}</td>
+                                                {% elif search_for == 'education' %}
+                                                <td>{{ i.education }}</td>
+                                                {% elif search_for == 'blood_group' %}
+                                                <td>{{ i.blood_group }}</td>
+                                                {% endif %}
+                                                <td><a href="{% url 'pdf' i.id %}"><button class="btn btn-primary "><i class="fas fa-download"></button></a></td>
                                                 <td><a href="{% url 'view' i.id %}"><button class="btn btn-primary "><i class="fas fa-eye"></button></a></td>
                                                 <td>
                                                     <a href="{% url 'edit' i.id %}">
@@ -247,9 +273,10 @@
                                             <tr>
                                                 <th>Sl. No.</th>
                                                 <th>Full Name</th>
+                                                <th>ID</th>
                                                 <th>Mobile</th>
-                                                
-                                                <th>Place</th>
+                                                <th>place</th>
+                                                <th>Generate</th>
                                                 <th>View</th>
                                                 <th>Edit</th>
                                                 <th>Delete</th>
@@ -342,7 +369,7 @@
 
         } else if(v1=="sucdlt"){
 
-          swal('Success!', 'Tutorial has been succesfully Deleted', 'success');
+          swal('Success!', 'Data has been succesfully Deleted', 'success');
         }
         else if (v1=="failed"){
           swal('Oops...', 'Something went wrong!', 'error');
