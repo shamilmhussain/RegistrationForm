@@ -86,7 +86,7 @@
                             <div class="card">
                                 <h5 class="card-header">Registration Form</h5>
                                 <div class="card-body">
-                                    <form id="validationform" method="POST" data-parsley-validate="" novalidate="">{% csrf_token %}
+                                    <form id="validationform" method="POST" data-parsley-validate="" novalidate="" enctype="multipart/form-data">{% csrf_token %}
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Member Photo</label>
                                             <div class="col-12 col-sm-3 col-lg-3">
@@ -102,44 +102,50 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Change</label>
+                                            <div class="col-12 col-sm-8 col-lg-8">
+                                                <input type="file" name="photo" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Name (with initial)</label>
                                             <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" name="first_name" value="{{ member.first_name }}" required=""  class="form-control" disabled>
+                                                <input type="text" name="first_name" value="{{ member.first_name }}" required=""  class="form-control" >
                                             </div>
                                             <div class="col-lg-5">
-                                                <input type="text" name="last_name" value="{{ member.last_name }}" required=""  class="form-control" disabled>
+                                                <input type="text" name="last_name" value="{{ member.last_name }}" required=""  class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Father Name</label>
                                             <div class="col-12 col-sm-8 col-lg-8">
-                                                <input type="text" required="" value="{{ member.father_name }}" name="father_name" placeholder="Enter your Father name" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.father_name }}" name="father_name" placeholder="Enter your Father name" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Mobile</label>
                                             <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" name="mobile" required="" value="{{ member.mobile }}" placeholder="Enter Your Mobile Number" class="form-control" disabled>
+                                                <input type="text" name="mobile" required="" value="{{ member.mobile }}" placeholder="Enter Your Mobile Number" class="form-control" >
                                             </div>
                                             <label class="col-lg-2 col-form-label text-sm-right">WhatsApp No.</label>
                                             <div class="col-sm-4 col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="whatsapp" value="{{ member.whatsapp }}" placeholder="Enter Your WhatsApp Mobile Number" class="form-control" disabled>
+                                                <input type="text" required="" name="whatsapp" value="{{ member.whatsapp }}" placeholder="Enter Your WhatsApp Mobile Number" class="form-control" >
                                             </div>
                                         </div>
                                         
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">E-Mail</label>
                                             <div class="col-sm-3 col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.email }}" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.email }}" class="form-control" >
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">DOB</label>
                                             <div class="col-sm-2 col-lg-2 mb-3 mb-sm-0">
-                                                <input type="date" required="" value="{{ member.dob|date:"Y-m-d" }}"  name="dob" class="form-control" disabled>
+                                                <input type="date" required="" value="{{ member.dob|date:"Y-m-d" }}"  name="dob" class="form-control" >
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">Blood Group</label>
                                             <div class="col-sm-1 col-lg-1 mb-3 mb-sm-0">
                                                 
-                                                <select name="blood_group" class="form-control" disabled>
+                                                <select name="blood_group" class="form-control" >
                                                     <option value="">----------</option>
                                                     <option value="A+ve" {% if member.blood_group == 'A+ve' %} selected {% endif %}>A+ve</option>
                                                     <option value="A-ve" {% if member.blood_group == 'A-ve' %} selected {% endif %}>A-ve</option>
@@ -156,15 +162,15 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Unit</label>
                                             <div class="col-sm-3 col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.unit }}" name="unit" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.unit }}" name="unit" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">Sector</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.sector }}" name="sector" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.sector }}" name="sector" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">Central</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.central }}" name="central" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.central }}" name="central" placeholder="" class="form-control" >
                                             </div>
                                            
                                         </div>
@@ -174,37 +180,37 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Education</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.education }}" name="education" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.education }}" name="education" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-lg-1 col-form-label text-sm-right">Subject</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.subject }}" name="subject" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.subject }}" name="subject" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-lg-1 col-form-label text-sm-right">Islamic</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required=""  value="{{ member.islamic }}" name="islamic" placeholder="" class="form-control" disabled>
+                                                <input type="text" required=""  value="{{ member.islamic }}" name="islamic" placeholder="" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Company</label>
                                             <div class="col-lg-4 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.company }}" name="company" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.company }}" name="company" placeholder="" class="form-control" >
                                             </div>
-                                            <label class="col-1 col-form-label text-sm-right">Job Type</label disabled>
+                                            <label class="col-1 col-form-label text-sm-right">Job Type</label >
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.job_type }}" name="job_type" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.job_type }}" name="job_type" placeholder="" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Job</label>
                                             <div class="col-12 col-sm-8 col-lg-6">
-                                                <input type="text" required="" value="{{ member.job }}" name="job" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.job }}" name="job" placeholder="" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Skills</label>
                                             <div class="col-12 col-sm-8 col-lg-6">
-                                                <textarea required="" name="skills" class="form-control" disabled>{{ member.skills }}</textarea >
+                                                <textarea required="" name="skills" class="form-control" >{{ member.skills }}</textarea >
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -219,7 +225,7 @@
                                             
                                             <div class="col-lg-3 mb-3 mb-sm-0">
                                                 
-                                                <select name="district" class="form-control" required disabled>
+                                                <select name="district" class="form-control" required >
                                                     <option value="">Select</option>
                                                     <option value="Kasaragod" {% if member.district == 'Kasaragod' %} selected {% endif %}>Kasaragod</option>
                                                     <option value="Kannur" {% if member.district == 'Kannur' %} selected {% endif %}>Kannur</option>
@@ -239,31 +245,31 @@
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">Place</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.place }}" name="place" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.place }}" name="place" placeholder="" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">House Name</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.house_name }}" name="house_name" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.house_name }}" name="house_name" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">Post Office</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.post_office }}" name="post_office" placeholder="" class="form-control" disabled>
+                                                <input type="text" required="" value="{{ member.post_office }}" name="post_office" placeholder="" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Phone Number</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="number" required="" value="{{ member.phone }}" name="phone" placeholder="" class="form-control" disabled>
+                                                <input type="number" required="" value="{{ member.phone }}" name="phone" placeholder="" class="form-control" >
                                             </div>
                                             
                                         </div>
                                         
                                         <div class="form-group row text-right">
                                             <div class="col col-sm-10 col-lg-9 offset-sm-1 offset-lg-0">
-                                                <button type="submit" class="btn btn-space btn-primary" disabled>Submit</button>
-                                                <button class="btn btn-space btn-secondary" disabled>Cancel</button>
+                                                <button type="submit" class="btn btn-space btn-primary" >Update</button>
+                                                <a href="{% url 'registered' %}"><button type="button" class="btn btn-space btn-secondary" >Cancel</button></a>
                                             </div>
                                         </div>
                                     </form>

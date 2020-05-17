@@ -6,7 +6,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Data Tables</title>
+    <title>ADMIN PANEL</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link href="{% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
@@ -170,8 +170,41 @@
                     <!-- basic table  -->
                     <!-- ============================================================== -->
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                        <div class="card">
-                            <h5 class="card-header">Basic Table</h5>
+                        <div class="mb-3 card shadow">
+                            
+                            <div style="display: block;" class="card-header" >
+                                <h5 style="float: left;" class="">Members Table</h5>
+                                <div style="float: right;" class="mb-0">
+                    
+                                  <form method="post" style="float: left;">{% csrf_token %}
+                                    <div class="form-group mr-2" style="float: left;">
+                                    <select name="search_for" class="form-control" required>
+                                        <option value="">Select Search for</option>
+                                        <option value="job" {% if search_for == 'job' %} selected {% endif %}>Job</option>
+                                        <option value="job_type" {% if search_for == 'job_type' %} selected {% endif %}>Job Type</option>
+                                        <option value="company" {% if search_for == 'company' %} selected {% endif %}>Company</option>
+                                        <option value="education" {% if search_for == 'education' %} selected {% endif %}>Education</option>
+                                        <option value="blood_group" {% if search_for == 'blood_group' %} selected {% endif %}>Blood Group</option>
+                                      </select>
+                                    </div>
+                                  
+                                               
+                                <div class="form-group" style="float: left;">
+                                  
+                                        <input type="text" name="keyword" value="{{ keyword  }}" placeholder="search from whole data" class="form-control" >
+                                  </div>
+                                                <div class="form-group" style="float: left;>
+                                                    <label class="form-label">&nbsp;</label><label class="form-label">&nbsp;</label><label class="form-label">&nbsp;</label>
+                    
+                                  <button type="submit" name="search" class="btn btn-primary" >Search</button>
+                                  </div>
+                    
+                                  </form>
+                                  
+                    
+                              </div>
+                    
+                              </div>
                             <div class="card-body">
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered first">
@@ -180,9 +213,11 @@
                                                 <th>Sl. No.</th>
                                                 <th>Full Name</th>
                                                 <th>Mobile</th>
-                                                <th>WhatsApp</th>
+                                                
                                                 <th>Place</th>
                                                 <th>View</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -191,20 +226,33 @@
                                                 <td>{{ forloop.counter }}</td>
                                                 <td>{{ i.first_name }} {{ i.last_name }}</td>
                                                 <td>{{ i.mobile }}</td>
-                                                <td>{{ i.whatsapp }}</td>
+                                                
                                                 <td>{{ i.place }}</td>
-                                                <td><a href="{% url 'view' i.id %}"><button class="btn btn-primary ">View</button></a></td>
+                                                <td><a href="{% url 'view' i.id %}"><button class="btn btn-primary "><i class="fas fa-eye"></button></a></td>
+                                                <td>
+                                                    <a href="{% url 'edit' i.id %}">
+                                                      <button class="open-Dialog btn btn-primary"><i class="fas fa-edit"></i></button>
+                                                    </a>
+                                                    </td>
+                                                <td>
+                                                    <form id="dlt{{ i.id }}" method="POST">{% csrf_token %}
+                                                    <input type="number" name="delete_id" value="{{ i.id }}" hidden>
+                                                    <button type="button" onclick="alrt({{ i.id }})" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                                                  </form>
+                                                  </td>
                                             </tr>
                                             {% endfor %}
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Name</th>
-                                                <th>Position</th>
-                                                <th>Office</th>
-                                                <th>Age</th>
-                                                <th>Start date</th>
-                                                <th>Salary</th>
+                                                <th>Sl. No.</th>
+                                                <th>Full Name</th>
+                                                <th>Mobile</th>
+                                                
+                                                <th>Place</th>
+                                                <th>View</th>
+                                                <th>Edit</th>
+                                                <th>Delete</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -243,6 +291,7 @@
             <!-- ============================================================== -->
         </div>
     </div>
+    <input type="text" id="msg" value="{{ msg }}" hidden>
     <!-- ============================================================== -->
     <!-- end main wrapper -->
     <!-- ============================================================== -->
@@ -266,7 +315,41 @@
     <script src="https://cdn.datatables.net/rowgroup/1.0.4/js/dataTables.rowGroup.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
     <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script>
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script>
+        function alrt(frm){
+          swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover the data!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+            .then((willDelete) => {
+              if (willDelete) {
+                var id = 'dlt'+ frm
+                forms = document.getElementById(id).submit()
+              } 
+            });
+        
+
+    }
+    sucdlt()
+    function sucdlt() {
+        var v1 = document.getElementById('msg').value;
+
+        if(v1==""){
+
+        } else if(v1=="sucdlt"){
+
+          swal('Success!', 'Tutorial has been succesfully Deleted', 'success');
+        }
+        else if (v1=="failed"){
+          swal('Oops...', 'Something went wrong!', 'error');
+        }
+
+    }
+    </script>
 </body>
  
 </html>
