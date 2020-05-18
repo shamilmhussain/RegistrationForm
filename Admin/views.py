@@ -11,6 +11,18 @@ import os
 
 root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+def admin_validation(fun):
+
+    def wrapper(request, *args, **kwargs):
+        try:
+            if request.user.is_superuser == True:
+                return fun(request, *args, **kwargs)
+            else:
+                return redirect("registered")
+        except Exception as e:
+            return redirect('registered')
+    return wrapper
+
 def memberRegistrationView(request):
     msg = ''
     try:
@@ -56,6 +68,7 @@ def adminLoginView(request):
 @login_required(login_url='/login/')
 def RegisteredView(request):
     keyword = search_for = msg = ''
+    user_type = request.user.is_superuser
     members = models.MemberRegistration.objects.all()
     if request.method == 'POST':
         if 'search' in request.POST:
@@ -78,11 +91,14 @@ def RegisteredView(request):
         'msg':msg,
         'keyword':keyword,
         'search_for':search_for,
-        'members' : members
+        'members' : members,
+        'user_type': user_type
         }
     return render(request,'data-tables.html',context = context)
 
+
 @login_required(login_url='/login/')
+@admin_validation
 def editMemberView(request,id):
     msg = ''
     member = models.MemberRegistration.objects.get(id=id)
