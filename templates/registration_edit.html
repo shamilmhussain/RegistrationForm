@@ -146,7 +146,7 @@
                                             <div class="col-sm-1 col-lg-1 mb-3 mb-sm-0">
                                                 
                                                 <select name="blood_group" class="form-control" >
-                                                    <option value="">----------</option>
+                                                    <option value="">----------------------------------------------</option>
                                                     <option value="A+ve" {% if member.blood_group == 'A+ve' %} selected {% endif %}>A+ve</option>
                                                     <option value="A-ve" {% if member.blood_group == 'A-ve' %} selected {% endif %}>A-ve</option>
                                                     <option value="B+ve" {% if member.blood_group == 'B+ve' %} selected {% endif %}>B+ve</option>
@@ -160,19 +160,23 @@
                                         </div>
                                        
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-sm-right">Unit</label>
-                                            <div class="col-sm-3 col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.unit }}" name="unit" placeholder="" class="form-control" >
+                                            <label class="col-3 col-form-label text-sm-right">Center</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <select name="central" class="form-control" required >
+                                                    <option value="">----------------------------------------------</option>
+                                                    <option value="Jeddah" {% if member.central == 'Jeddah' %} selected {% endif %}>Jeddah</option>
+                                                    <option value="Out of Jeddah"{% if member.central == 'Out of Jeddah' %} selected {% endif %}>Out of Jeddah</option>
+                                                </select>
                                             </div>
+                                            
                                             <label class="col-1 col-form-label text-sm-right">Sector</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.sector }}" name="sector" placeholder="" class="form-control" >
+                                                <input type="text" value="{{ member.sector }}" required="" name="sector" placeholder="" class="form-control">
                                             </div>
-                                            <label class="col-1 col-form-label text-sm-right">Central</label>
-                                            <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.central }}" name="central" placeholder="" class="form-control" >
+                                            <label class="col-sm-1 col-form-label text-sm-right">Unit</label>
+                                            <div class="col-sm-3 col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" value="{{ member.unit }}" required="" name="unit" placeholder="" class="form-control">
                                             </div>
-                                           
                                         </div>
                                         <div class="form-group row">
                                             <h4 style="margin: auto;">Education/Job</h4>
@@ -180,37 +184,54 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Education</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.education }}" name="education" placeholder="" class="form-control" >
+                                                <input type="text" value="{{ member.education }}" name="education" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-lg-1 col-form-label text-sm-right">Subject</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.subject }}" name="subject" placeholder="" class="form-control" >
+                                                <input type="text" value="{{ member.subject }}" name="subject" placeholder="" class="form-control" >
                                             </div>
                                             <label class="col-lg-1 col-form-label text-sm-right">Islamic</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required=""  value="{{ member.islamic }}" name="islamic" placeholder="" class="form-control" >
+                                                <input type="text"  value="{{ member.islamic }}" name="islamic" placeholder="" class="form-control" >
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Company</label>
                                             <div class="col-lg-4 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.company }}" name="company" placeholder="" class="form-control" >
+                                                <input type="text" value="{{ member.company }}" name="company" placeholder="" class="form-control">
                                             </div>
-                                            <label class="col-1 col-form-label text-sm-right">Job Type</label >
+                                            <label class="col-1 col-form-label text-sm-right">Job Type</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.job_type }}" name="job_type" placeholder="" class="form-control" >
+                                                <select name="job_type" class="form-control"  >
+                                                    <option value="">----------------------------------------------</option>
+                                                    <option value="Business" {% if member.job_type == 'Business' %} selected {% endif %}>Business</option>
+                                                    <option value="Employee" {% if member.job_type == 'Employee' %} selected {% endif %}>Employee</option>
+                                                    <option value="Self Employed" {% if member.job_type == 'Self Employee' %} selected {% endif %}>Self Employed</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Job</label>
-                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                <input type="text" required="" value="{{ member.job }}" name="job" placeholder="" class="form-control" >
+                                            <label class="col-sm-3 col-form-label text-sm-right">Profession</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <select name="profession" class="form-control"  >
+                                                    <option value="">----------------------------------------------</option>
+                                                    <option value="Accountant" {% if member.profession == 'Accountant' %} selected {% endif %}>Accountant</option>
+                                                    <option value="Taxi" {% if member.profession == 'Taxi' %} selected {% endif %}>Taxi</option>
+                                                    <option value="Plumber" {% if member.profession == 'Plumber' %} selected {% endif %}>Plumber</option>
+                                                    <option value="Electrician" {% if member.profession == 'Electrician' %} selected {% endif %}>Electrician</option>
+                                                    <option value="Sales Man" {% if member.profession == 'Sales Man' %} selected {% endif %}>Sales Man</option>
+                                                    <option value="AC Mechanic" {% if member.profession == 'AC Mechanic' %} selected {% endif %}>AC Mechanic</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-sm-right">Job</label>
+                                            <div class="col-12 col-sm-4 col-lg-5">
+                                                <input type="text" value="{{ member.job }}" name="job" placeholder="" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Skills</label>
                                             <div class="col-12 col-sm-8 col-lg-6">
-                                                <textarea required="" name="skills" class="form-control" >{{ member.skills }}</textarea >
+                                                <textarea name="skills" class="form-control" >{{ member.skills }}</textarea >
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -249,19 +270,23 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-sm-right">House Name</label>
+                                            <label class="col-sm-3 col-form-label text-sm-right">Block No.</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.house_name }}" name="house_name" placeholder="" class="form-control" >
+                                                <input type="text" required="" value="{{ member.block_no }}" name="block_no" placeholder="" class="form-control">
                                             </div>
-                                            <label class="col-1 col-form-label text-sm-right">Post Office</label>
+                                            <label class="col-1 col-form-label text-sm-right">House Name</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" value="{{ member.post_office }}" name="post_office" placeholder="" class="form-control" >
+                                                <input type="text" required="" value="{{ member.house_name}}" name="house_name" placeholder="" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-sm-right">Phone Number</label>
+                                            <label class="col-sm-3 col-form-label text-sm-right">House No.</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="number" required="" value="{{ member.phone }}" name="phone" placeholder="" class="form-control" >
+                                                <input type="text" required="" value="{{ member.house_no }}" name="house_no" placeholder="" class="form-control">
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Phone No.</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="number" required="" value="{{ member.phone }}" name="phone" placeholder="" class="form-control">
                                             </div>
                                             
                                         </div>

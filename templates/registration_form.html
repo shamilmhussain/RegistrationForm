@@ -36,16 +36,37 @@
         <!-- navbar -->
         <!-- ============================================================== -->
          <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand">
-                    <img class="zoom" style="height: 50px;" src="{% static 'jpac.jpeg' %}">J-PAC
+            
+            <nav class="navbar navbar-expand-lg bg-white fixed-top ">
+                <!-- <div style="background-color: gold;" class="row"> -->
+                    <!-- <div style="background-color: red;" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"></div> -->
+                <!-- <a class="navbar-brand" > -->
+                    <img class="zoom" style="height: 50px;float: left;;" src="{% static 'jpac.jpeg' %}">
+                    <span style="font-size: 30px; font-weight: bold;">J-PAC</span>
                     
-                    </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- </a> -->
+                <!-- </div> -->
+                    
+                <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button>
+                </button> -->
                 
+                
+                <!-- <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-2"> -->
+                    <img class="zoom" style="height: 60px; float: right;" src="{% static 'logo.png' %}">
+                    <!-- <div class="row"> -->
+                    <!-- <h5>Wizzo Technologies</h5> -->
+                    
+                <!-- </div> -->
+                <!-- <div class="row"> -->
+                    <!-- <h5>Wizzo Technologies</h5> -->
+                    
+                <!-- </div> -->
+                <!-- </div> -->
+            <!-- </div> -->
+            
             </nav>
+        
         </div>
         <!-- ============================================================== -->
         <!-- end navbar -->
@@ -126,7 +147,7 @@
                                             <div class="col-sm-1 col-lg-1 mb-3 mb-sm-0">
                                                 
                                                 <select name="blood_group" class="form-control" >
-                                                    <option value="">----------</option>
+                                                    <option value="">----------------------------------------------</option>
                                                     <option value="A+ve">A+ve</option>
                                                     <option value="A-ve">A-ve</option>
                                                     <option value="B+ve">B+ve</option>
@@ -141,19 +162,34 @@
                                         
                                        
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-sm-right">Unit</label>
-                                            <div class="col-sm-3 col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="unit" placeholder="" class="form-control">
+                                            <label class="col-3 col-form-label text-sm-right">Center</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <select name="central" class="form-control" required >
+                                                    <option value="">----------------------------------------------</option>
+                                                    <option value="Jeddah">Jeddah</option>
+                                                    <option value="Out of Jeddah">Out of Jeddah</option>
+                                                </select>
                                             </div>
+                                            
                                             <label class="col-1 col-form-label text-sm-right">Sector</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
                                                 <input type="text" required="" name="sector" placeholder="" class="form-control">
                                             </div>
-                                            <label class="col-1 col-form-label text-sm-right">Central</label>
-                                            <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="central" placeholder="" class="form-control">
+                                            <label class="col-sm-1 col-form-label text-sm-right">Unit</label>
+                                            <div class="col-sm-3 col-lg-2 mb-3 mb-sm-0">
+                                                <input type="text" required="" name="unit" placeholder="" class="form-control">
                                             </div>
+                                            
                                            
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-12 col-sm-5 col-form-label text-sm-right">Do you have Vehicle ?</label>
+                                            <label class="ml-4 custom-control custom-radio custom-control-inline">
+                                                <input name="vehicle" value="Yes" class="custom-control-input" type="radio"><span class="custom-control-label">Yes</span>
+                                            </label>
+                                            <label class="custom-control custom-radio custom-control-inline">
+                                                <input name="vehicle" value="No" checked="" class="custom-control-input" type="radio"><span class="custom-control-label">No</span>
+                                            </label>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Photo</label>
@@ -167,37 +203,54 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Education</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="education" placeholder="" class="form-control">
+                                                <input type="text" name="education" placeholder="" class="form-control">
                                             </div>
                                             <label class="col-lg-1 col-form-label text-sm-right">Subject</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="subject" placeholder="" class="form-control">
+                                                <input type="text" name="subject" placeholder="" class="form-control">
                                             </div>
                                             <label class="col-lg-1 col-form-label text-sm-right">Islamic</label>
                                             <div class="col-lg-2 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="islamic" placeholder="" class="form-control">
+                                                <input type="text" name="islamic" placeholder="" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label text-sm-right">Company</label>
                                             <div class="col-lg-4 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="company" placeholder="" class="form-control">
+                                                <input type="text" name="company" placeholder="" class="form-control">
                                             </div>
                                             <label class="col-1 col-form-label text-sm-right">Job Type</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="job_type" placeholder="" class="form-control">
+                                                <select name="job_type" class="form-control"  >
+                                                    <option value="">----------------------------------------------</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Employee">Employee</option>
+                                                    <option value="Self Employed">Self Employed</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-12 col-sm-3 col-form-label text-sm-right">Job</label>
-                                            <div class="col-12 col-sm-8 col-lg-6">
-                                                <input type="text" required="" name="job" placeholder="" class="form-control">
+                                            <label class="col-sm-3 col-form-label text-sm-right">Profession</label>
+                                            <div class="col-lg-2 mb-3 mb-sm-0">
+                                                <select name="profession" class="form-control"  >
+                                                    <option value="">----------------------------------------------</option>
+                                                    <option value="Accountant">Accountant</option>
+                                                    <option value="Taxi">Taxi</option>
+                                                    <option value="Plumber">Plumber</option>
+                                                    <option value="Electrician">Electrician</option>
+                                                    <option value="Sales Man">Sales Man</option>
+                                                    <option value="AC Mechanic">AC Mechanic</option>
+                                                </select>
+                                            </div>
+                                            <label class="col-sm-1 col-form-label text-sm-right">Job</label>
+                                            <div class="col-12 col-sm-4 col-lg-5">
+                                                <input type="text" name="job" placeholder="" class="form-control">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-12 col-sm-3 col-form-label text-sm-right">Skills</label>
                                             <div class="col-12 col-sm-8 col-lg-6">
-                                                <textarea required="" name="skills" class="form-control"></textarea>
+                                                <textarea name="skills" class="form-control"></textarea>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -237,17 +290,21 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-sm-right">House Name</label>
+                                            <label class="col-sm-3 col-form-label text-sm-right">Block No.</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" name="block_no" placeholder="" class="form-control">
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">House Name</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
                                                 <input type="text" required="" name="house_name" placeholder="" class="form-control">
                                             </div>
-                                            <label class="col-1 col-form-label text-sm-right">Post Office</label>
-                                            <div class="col-lg-3 mb-3 mb-sm-0">
-                                                <input type="text" required="" name="post_office" placeholder="" class="form-control">
-                                            </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label text-sm-right">Phone Number</label>
+                                            <label class="col-sm-3 col-form-label text-sm-right">House No.</label>
+                                            <div class="col-lg-3 mb-3 mb-sm-0">
+                                                <input type="text" required="" name="house_no" placeholder="" class="form-control">
+                                            </div>
+                                            <label class="col-1 col-form-label text-sm-right">Phone No.</label>
                                             <div class="col-lg-3 mb-3 mb-sm-0">
                                                 <input type="number" required="" name="phone" placeholder="" class="form-control">
                                             </div>
